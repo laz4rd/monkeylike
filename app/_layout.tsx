@@ -1,29 +1,30 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Slot } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <>
+      <View style={styles.header}>
+        <Text style={styles.greeting}>Hi Brijraj</Text>
+      </View>
+      <Slot />
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    paddingTop: 50,
+    paddingRight: 20,
+    paddingBottom: 10,
+    backgroundColor: "white",
+    alignItems: "flex-end",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+  },
+  greeting: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#222",
+  },
+});
