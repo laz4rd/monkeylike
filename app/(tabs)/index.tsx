@@ -1,20 +1,27 @@
-import * as Haptics from "expo-haptics";
-import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import profilePic from "../../assets/images/X4.png";
 
-export default function HomeScreen() {
-  const handlePress = () => {
-    Haptics.selectionAsync(); // Trigger haptic feedback
-    console.log("Button pressed!");
-  };
+export default function Dashboard() {
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <View style={styles.container}>
-      <Text style={styles.greeting}>Hi, Brijraj</Text>
+      {/* Top row with text on left and profile on right */}
+      <View style={styles.headerRow}>
+        <View>
+          <Text style={styles.heading}>Welcome Back</Text>
+          <Text style={styles.date}>{formattedDate}</Text>
+        </View>
 
-      <Pressable style={styles.button} onPress={handlePress}>
-        <Text style={styles.buttonText}>Press Me</Text>
-      </Pressable>
+        <Image
+          source={profilePic} style={styles.profile} // placeholder profile pic
+        />
+      </View>
     </View>
   );
 }
@@ -22,28 +29,29 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fefefe",
     paddingTop: 60,
     paddingHorizontal: 20,
-    justifyContent: "center",
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
   },
-  greeting: {
-    position: "absolute",
-    top: 60,
-    right: 20,
-    fontSize: 18,
-    fontWeight: "500",
+  heading: {
+    fontSize: 24,
+    fontWeight: "700",
+    color: "#111",
   },
-  button: {
-    backgroundColor: "#222",
-    paddingVertical: 14,
-    paddingHorizontal: 30,
-    borderRadius: 12,
-  },
-  buttonText: {
-    color: "#fff",
+  date: {
+    marginTop: 4,
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "500",
+    color: "#555",
+  },
+  profile: {
+    width: 60,
+    height: 60,
+    borderRadius: 500,
   },
 });
