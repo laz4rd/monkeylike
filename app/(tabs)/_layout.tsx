@@ -4,30 +4,21 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#007AFF", // iOS blue active tint
+        tabBarActiveTintColor: "#000",
+        tabBarInactiveTintColor: "#000",
         tabBarStyle: {
           backgroundColor: "white",
-          borderTopColor: "#ddd",
-          // optionally add blur effect if you want
-          // backdropFilter: "blur(10px)", // may not work in all RN versions
+          borderTopColor: "",
         },
         tabBarLabelStyle: {
-          fontWeight: "600",
+          fontWeight: "400",
+          textTransform: "none",
         },
       }}
     >
-      <Tabs.Screen
-        name="index"  // corresponds to app/(tabs)/index.tsx (Home)
-        options={{ title: "Home" }}
-      />
-      <Tabs.Screen
-        name="stories" // corresponds to app/(tabs)/stories.tsx
-        options={{ title: "Stories" }}
-      />
-      <Tabs.Screen
-        name="writer" // corresponds to app/(tabs)/writer.tsx
-        options={{ title: "Writer" }}
-      />
+      <Tabs.Screen name="index" options={{ title: "Home" }} />
+      <Tabs.Screen name="stories" options={{ title: "Stories" }} />
+      <Tabs.Screen name="writer" options={{ title: "Writer" }} />
     </Tabs>
   );
 }
